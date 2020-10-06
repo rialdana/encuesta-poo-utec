@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -36,7 +37,9 @@ public class MainActivity extends AppCompatActivity implements QuestionnaireList
         mButtonContinue.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                Intent intent = new Intent(MainActivity.this, ResultsActivity.class);
+                intent.putExtra("questions", questionnaire);
+                startActivity(intent);
             }
         });
 
@@ -63,7 +66,6 @@ public class MainActivity extends AppCompatActivity implements QuestionnaireList
 
 
     private Questionnaire createQuestionnaire() {
-
         Questionnaire questionnaire = new Questionnaire();
         questionnaire.addQuestion(new Question(getString(R.string.question_one), true));
         questionnaire.addQuestion(new Question(getString(R.string.question_two), false));
@@ -73,7 +75,6 @@ public class MainActivity extends AppCompatActivity implements QuestionnaireList
         questionnaire.addQuestion(new Question(getString(R.string.question_six), true));
         questionnaire.addQuestion(new Question(getString(R.string.question_seven), true));
         questionnaire.addQuestion(new Question(getString(R.string.question_eight), true));
-
         return questionnaire;
     }
 

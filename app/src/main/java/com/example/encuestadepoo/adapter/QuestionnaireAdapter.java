@@ -56,6 +56,7 @@ public class QuestionnaireAdapter extends RecyclerView.Adapter<QuestionnaireAdap
         public void bindData(final Question question, final QuestionnaireListener listener, final int position) {
 
             textViewQuestion.setText(question.getQuestion());
+            //switchQuestion.setChecked(question.);
             switchQuestion.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
