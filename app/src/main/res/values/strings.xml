@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">Encuesta de POO</string>
+    <string name="question_one">1. ¿Una variable de tipo String puede almacenar null?</string>
+    <string name="question_two">2. ¿Una variable tipo int puede almacenar null?</string>
+    <string name="question_three">3. ¿Java es un lenguaje tipado?</string>
+    <string name="question_four">4. ¿Puedes correr java en cualquier dispositivo sin modificar el codigo fuente?</string>
+    <string name="question_five">5. ¿Es java un lenguaje interpretado?</string>
+    <string name="question_six">6. ¿Puedes utilizar java en desarrollo movil?</string>
+    <string name="question_seven">7. ¿Es java un lenguaje robusto?</string>
+    <string name="question_eight">8. ¿Es Netbeans un IDE para desarrollar en Java?</string>
+    <string name="continue_text">Continuar</string>
+
+</resources>
