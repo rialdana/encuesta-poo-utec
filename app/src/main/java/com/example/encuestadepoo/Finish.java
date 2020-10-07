@@ -6,6 +6,7 @@ import androidx.appcompat.widget.Toolbar;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.encuestadepoo.adapter.QuestionnaireListener;
@@ -17,6 +18,7 @@ public class Finish extends AppCompatActivity implements QuestionnaireListener {
 
     private Toolbar mToolbar;
     private TextView ProcetajeCorectas, PorcentajeIncorectas, MensajeView;
+    private ImageView imageViewStatus;
     private Questionnaire questionnaire;
     public  int TodasPreguntas, PreguntasCorectas,PreguntasIncorectas;
 
@@ -29,6 +31,7 @@ public class Finish extends AppCompatActivity implements QuestionnaireListener {
         ProcetajeCorectas = findViewById(R.id.textView5);
         PorcentajeIncorectas = findViewById(R.id.textView7);
         MensajeView= findViewById(R.id.Mensaje);
+        imageViewStatus = (ImageView) findViewById(R.id.imageView);
 
         questionnaire = (Questionnaire) getIntent().getSerializableExtra("questions");
 
@@ -43,12 +46,26 @@ public class Finish extends AppCompatActivity implements QuestionnaireListener {
         DecimalFormat df = new DecimalFormat("0.00");
         double result1 = (PreguntasCorectas*100);
         double result2 = (PreguntasIncorectas*100);
+        double resultAfirmative = (result1/TodasPreguntas);
+
         Log.i("corectas %", "resultado: "+ df.format(result1/TodasPreguntas));
         Log.i("Incorectas %", "resultado: "+ df.format(result2/TodasPreguntas));
         ProcetajeCorectas.setText(df.format(result1/TodasPreguntas)+ " %");
         PorcentajeIncorectas.setText(df.format(result2/TodasPreguntas)+" %");
 
-
+        if(resultAfirmative>=76){
+            MensajeView.setText("Excelente");
+            imageViewStatus.setImageResource(R.drawable.imagefour);
+        }else if(resultAfirmative>=51){
+            MensajeView.setText("Bien");
+            imageViewStatus.setImageResource(R.drawable.imagethree);
+        }else if(resultAfirmative>=26){
+            MensajeView.setText("Regular");
+            imageViewStatus.setImageResource(R.drawable.imagetwo);
+        }else if(resultAfirmative>=0){
+            MensajeView.setText("Mal");
+            imageViewStatus.setImageResource(R.drawable.imageone);
+        }
     }
 
 
