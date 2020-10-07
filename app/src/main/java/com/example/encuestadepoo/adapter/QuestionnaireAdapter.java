@@ -19,10 +19,12 @@ public class QuestionnaireAdapter extends RecyclerView.Adapter<QuestionnaireAdap
 
     private List<Question> questions;
     private QuestionnaireListener listener;
+    private Boolean verswich;
 
-    public QuestionnaireAdapter(List<Question> questions, QuestionnaireListener listener) {
+    public QuestionnaireAdapter(List<Question> questions, QuestionnaireListener listener, boolean visible ) {
         this.questions = questions;
         this.listener = listener;
+        verswich = visible;
     }
 
     @NonNull
@@ -34,7 +36,7 @@ public class QuestionnaireAdapter extends RecyclerView.Adapter<QuestionnaireAdap
 
     @Override
     public void onBindViewHolder(@NonNull final QuestionnaireViewHolder holder, int position) {
-        holder.bindData(questions.get(position), listener, position);
+        holder.bindData(questions.get(position), listener, position, verswich);
     }
 
     @Override
@@ -53,16 +55,21 @@ public class QuestionnaireAdapter extends RecyclerView.Adapter<QuestionnaireAdap
             switchQuestion = view.findViewById(R.id.switch_question);
         }
 
-        public void bindData(final Question question, final QuestionnaireListener listener, final int position) {
+        public void bindData(final Question question, final QuestionnaireListener listener, final int position, boolean ver) {
 
             textViewQuestion.setText(question.getQuestion());
             //switchQuestion.setChecked(question.);
+
             switchQuestion.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
                 @Override
                 public void onCheckedChanged(CompoundButton compoundButton, boolean isChecked) {
                     listener.setAnswer(isChecked, position);
                 }
             });
+
+            if(!ver){
+                switchQuestion.setVisibility(View.GONE);
+            }
 
         }
     }

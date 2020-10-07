@@ -61,7 +61,7 @@ public class MainActivity extends AppCompatActivity implements QuestionnaireList
 
         questionnaire = createQuestionnaire();
 
-        mRecyclerView.setAdapter(new QuestionnaireAdapter(questionnaire.getQuestions(), this));
+        mRecyclerView.setAdapter(new QuestionnaireAdapter(questionnaire.getQuestions(), this, true));
     }
 
 

@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -38,14 +39,17 @@ public class ResultsActivity extends AppCompatActivity implements QuestionnaireL
         });
         mButtonContinue.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View v) {
-
+            public void onClick(View view) {
+                Intent intent = new Intent( ResultsActivity.this, Finish.class);
+                intent.putExtra("questions", questionnaire);
+                startActivity(intent);
             }
         });
+
     }
     private void setupRecyclersView() {
-        recycler_view_correctquestions.setAdapter(new QuestionnaireAdapter(questionnaire.getCorrectQuestions(),this));
-        mRecyclerViewgetwrongquestions.setAdapter(new QuestionnaireAdapter(questionnaire.getWrongQuestions(),this));
+        recycler_view_correctquestions.setAdapter(new QuestionnaireAdapter(questionnaire.getCorrectQuestions(),this, false));
+        mRecyclerViewgetwrongquestions.setAdapter(new QuestionnaireAdapter(questionnaire.getWrongQuestions(),this, false));
     }
     private void bindViews() {
         recycler_view_correctquestions=findViewById(R.id.recycler_view_correctquestions);
